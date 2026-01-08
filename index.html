@@ -99,13 +99,20 @@ body{
       display:block;
     }
 
-    /* Conteúdo por cima */
     .content{
-      position: relative;
-      z-index: 10;
-      display: flex;
+  position: relative;
+  z-index: 10;
+  height: 100svh;                /* altura real no celular */
+  width: min(92vw, 520px);
+  margin: 0 auto;
+  padding: clamp(16px, 3vh, 28px) 18px;
+  display: flex;
   flex-direction: column;
+  justify-content: space-between; /* distribui sem precisar rolar */
   align-items: center;
+  text-align: center;
+  gap: clamp(10px, 1.8vh, 18px);
+}
 
   gap: 22px;
       min-height: 100svh;
@@ -462,6 +469,7 @@ body{
   </script>
 </body>
 </html>
+
 
 
 
