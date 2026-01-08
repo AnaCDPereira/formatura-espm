@@ -14,7 +14,7 @@
  
  @font-face {
   font-family: "FonteESPM";
-  src: url("fonteespm.woff2") format("woff2")
+  src: url("fonteespm.woff2") format("woff2"),
        url("fonteespm.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -163,7 +163,7 @@ body{
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin: 0px 0  0;
-      width: 100%
+      width: 100%;
       justify-content: center;
     }
 
@@ -236,7 +236,7 @@ body{
       flex-direction: column;
       gap: 12px;
       margin-top: 0px;
-      width: 100%
+      width: 100%;
       align-items: stretch;
     }
     .btn{
@@ -317,15 +317,15 @@ body{
   width: auto;
   opacity: 0.9;
 }
-    .top-fade{
+/* ===== FADES (topo laranja e rodapé azul) ===== */
+.top-fade{
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: calc(env(safe-area-inset-top) + 40px);
   pointer-events: none;
-  z-index: 50;
-
+  z-index: 5;
   background: linear-gradient(
     to bottom,
     rgba(240,106,79,.95),
@@ -333,55 +333,49 @@ body{
     rgba(240,106,79,.25),
     rgba(240,106,79,0)
   );
-      body::after{
-  content: "";
+}
+
+/* fade azul no rodapé */
+html::after{
+  content:"";
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 140px;
-
+  height: calc(env(safe-area-inset-bottom) + 160px);
+  pointer-events: none;
+  z-index: 4; /* abaixo do .top-fade e acima do bg */
   background: linear-gradient(
     to bottom,
     rgba(11, 60, 93, 0),
-    rgba(11, 60, 93, 0.85),
+    rgba(11, 60, 93, 0.65),
     rgba(11, 60, 93, 1)
   );
+}
 
-  pointer-events: none;
-  z-index: 5;
-      @media (min-width: 900px){
+/* garante que o conteúdo fique acima dos fades */
+.content{ position: relative; z-index: 10; }
+
+/* ===== Desktop ===== */
+@media (min-width: 900px){
   .content{
-    width: min(92vw, 860px); /* 👈 mais largo no PC */
+    width: min(92vw, 860px);
     padding: 40px 26px 28px;
     gap: 22px;
   }
 
-  .logo-top img{
-    width: 220px;
-  }
+  .logo-top img{ width: 220px; }
 
-  .hero .t1{
-    font-size: 34px;
-  }
+  .hero .t1{ font-size: 34px; }
 
-  .title-image img{
-    width: min(800px, 85vw);
-  }
+  .title-image img{ width: min(800px, 85vw); }
 
-  .timer{
-    max-width: 520px;
-    transform: scale(1.15);
-  }
+  .timer{ max-width: 520px; transform: scale(1.15); }
 
-  .btn{
-    max-width: 520px;
-    margin: 0 auto;
-  }
+  .btn{ max-width: 520px; margin: 0 auto; }
 
-  .footer-logos img{
-    height: 52px;
-  }
+  .footer-logos img{ height: 52px; }
+}
 }
   </style>
 </head>
@@ -527,6 +521,7 @@ body{
   </script>
 </body>
 </html>
+
 
 
 
