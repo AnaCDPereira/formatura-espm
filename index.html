@@ -99,16 +99,15 @@ body{
       display:block;
     }
 
+   /* Conteúdo por cima */
     .content{
-  position: relative;
-  z-index: 10;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* distribui sem precisar rolar */
-  align-items: center;
-  text-align: center;
-}
+      position: relative;
+      z-index: 10;
+      min-height: 100svh;
+      width: min(92vw, 460px);
+      margin: 0 auto;
+      padding: 26px 18px 22px;
+    }
 
   gap: 22px;
       min-height: 100svh;
@@ -465,6 +464,7 @@ body{
   </script>
 </body>
 </html>
+
 
 
 
