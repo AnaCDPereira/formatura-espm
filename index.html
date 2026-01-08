@@ -29,6 +29,9 @@
   --glow-a: rgba(255, 180, 70, .50);
   --glow-b: rgba(255, 90, 180, .42);
   --glow-c: rgba(90, 210, 255, .42);
+       /* ...suas vars */
+  --space: 16px;      /* 👈 distância padrão */
+  --space-lg: 22px;   /* 👈 distância um pouco maior */
 }
 .glow-exato {
   color: #ffffff;
@@ -134,10 +137,14 @@ body{
     }
 
     /* “FALTAM…” próximo do cronômetro (opção 3: mais baixo) */
-    .faltam-wrap{
-      margin-top: 12px;      /* 👈 controla a altura do bloco do cronômetro */
-      text-align:center;
-    }
+   .faltam-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);          /* 👈 tudo dentro fica com a mesma distância */
+  margin-top: 0;
+  text-align: center;
+}
     .faltam{
       font-family: "FonteESPM", serif;
       text-transform: uppercase;
@@ -154,7 +161,7 @@ body{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
-      margin: 10px 0  0;
+      margin: 0px 0  0;
       width: 100%
       justify-content: center;
     }
@@ -453,6 +460,7 @@ body{
   </script>
 </body>
 </html>
+
 
 
 
