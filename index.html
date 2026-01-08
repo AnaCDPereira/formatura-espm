@@ -159,7 +159,8 @@ body{
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       transform: scale(1.1);
-      margin: 8px auto 18px;
+      margin: 20px auto 28px;
+      justify-content: center;
     }
 
     /* ✅ estilo 2: contorno brilhante */
@@ -167,6 +168,12 @@ body{
       position: relative;
       border-radius: 16px;
       padding: 14px 10px 12px;
+      min-width: 88px;
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
       background: linear-gradient(180deg, rgba(12,14,22,.26), rgba(12,14,22,.20));
       border: 1px solid rgba(255,255,255,.18);
       box-shadow: 0 14px 22px rgba(0,0,0,.22);
@@ -207,7 +214,7 @@ body{
     .num{
       font-family: "FonteESPM", serif;
       font-weight: 700;
-      font-size: clamp(22px, 5.6vw, 36px);
+      font-size: clamp(28px, 5.6vw, 36px);
       line-height: 1;
       text-shadow: 0 0 18px rgba(255,255,255,.18);
     }
@@ -301,7 +308,7 @@ body{
 }
 
 .footer-logos img {
-  height: 26px; /* controla o tamanho */
+  height: 30px; /* controla o tamanho */
   width: auto;
   opacity: 0.9;
 }
@@ -449,6 +456,7 @@ body{
   </script>
 </body>
 </html>
+
 
 
 
