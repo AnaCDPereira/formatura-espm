@@ -424,6 +424,16 @@ body::after{
   </main>
 
   <script>
+(function () {
+  const isDesktop =
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+    window.innerWidth >= 900;
+
+  if (isDesktop) {
+    window.location.replace("desktop.html");
+  }
+})();
+</script>
     // ===== CONFIG DO EVENTO =====
     const EVENT_TITLE = "Formatura ESPM Infinito";
     const EVENT_DESCRIPTION = "Você está pronto(a) para sua última dança? 💃🕺";
@@ -526,6 +536,7 @@ body::after{
   </script>
 </body>
 </html>
+
 
 
 
