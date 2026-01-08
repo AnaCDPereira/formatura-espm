@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Formatura ESPM Infinito</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+ 
+ @font-face {
+  font-family: "FonteESPM";
+  src: url("fonts/fonteespm.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+    :root{
+  --text: rgba(255,255,255,.92);
+  --text-soft: rgba(255,255,255,.78);
+  --glass: rgba(12, 14, 22, .28);
+  --stroke: rgba(255,255,255,.30);
+  --shadow: 0 18px 40px rgba(0,0,0,.35);
+  --glow-a: rgba(255, 180, 70, .50);
+  --glow-b: rgba(255, 90, 180, .42);
+  --glow-c: rgba(90, 210, 255, .42);
+}
+.glow-exato {
+  color: #ffffff;
+
+  text-shadow:
+    /* núcleo branco */
+    0 0 3px rgba(255,255,255,.95),
+    0 0 8px rgba(255,255,255,.85),
+
+    /* glow azul intenso */
+    0 0 18px rgba(120,235,255,.95),
+    0 0 36px rgba(80,210,255,.85),
+    0 0 64px rgba(40,170,255,.65),
+    0 0 96px rgba(40,170,255,.45);
+}
+.glow-text {
+  text-shadow:
+    0 0 6px rgba(255,255,255,.35),
+    0 0 12px rgba(255,180,70,.45),
+    0 0 22px rgba(255,90,180,.35),
+    0 0 34px rgba(90,210,255,.25) !important;
+}
+
+.glow-text-premium {
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.4),
+    0 0 10px rgba(255,255,255,.35),
+    0 0 22px rgba(255,180,70,.55),
+    0 0 36px rgba(255,90,180,.45),
+    0 0 52px rgba(90,210,255,.35);
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      min-height:100svh;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:#000;
+      overflow-x:hidden;
+    }
+
+    /* ✅ BG SEM ALTERAÇÕES: só exibindo o JPG em tela cheia */
+    .art-bg{
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+    }
+    .bg-img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display:block;
+    }
+
+    /* Conteúdo por cima */
+    .content{
+      position: relative;
+      z-index: 10;
+      min-height: 100svh;
+      width: min(92vw, 460px);
+      margin: 0 auto;
+      padding: 26px 18px 22px;
+    }
+
+    /* Texto principal no “sol” */
+    .hero{
+      text-align:center;
+      margin-top: 8vh;
+      text-shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+    .hero .t1{
+      font-family: "FonteESPM", serif;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-weight: 600;
+      font-size: clamp(22px, 4.4vw, 32px);
+      line-height: 1.05;
+      margin: 0;
+    }
+    .hero .t2{
+      font-family: "FonteESPM", serif;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-weight: 700;
+      font-size: clamp(34px, 7.6vw, 54px);
+      line-height: 1.00;
+      margin: 50px 0 0;
+    }
+
+    /* “FALTAM…” próximo do cronômetro (opção 3: mais baixo) */
+    .faltam-wrap{
+      margin-top: 5vh;      /* 👈 controla a altura do bloco do cronômetro */
+      text-align:center;
+    }
+    .faltam{
+      font-family: "FonteESPM", serif;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--text-soft);
+      margin: 0 0 0px;
+      text-shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+
+    /* Cronômetro */
+    .timer{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 8px auto 18px;
+    }
+
+    /* ✅ estilo 2: contorno brilhante */
+    .tile{
+      position: relative;
+      border-radius: 16px;
+      padding: 14px 10px 12px;
+      background: linear-gradient(180deg, rgba(12,14,22,.26), rgba(12,14,22,.20));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 14px 22px rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+    }
+
+    /* “borda glow” com pseudo-elemento */
+    .tile::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius: 18px;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--glow-a), var(--glow-b), var(--glow-c));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: .75;
+      pointer-events:none;
+      filter: blur(.2px);
+    }
+    .tile::after{
+      content:"";
+      position:absolute;
+      inset:-8px;
+      border-radius: 22px;
+      background: radial-gradient(circle at 30% 20%, var(--glow-a), transparent 55%),
+                  radial-gradient(circle at 70% 30%, var(--glow-b), transparent 55%),
+                  radial-gradient(circle at 50% 80%, var(--glow-c), transparent 60%);
+      opacity: .25;
+      filter: blur(10px);
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    .num{
+      font-family: "FonteESPM", serif;
+      font-weight: 700;
+      font-size: clamp(22px, 5.6vw, 36px);
+      line-height: 1;
+      text-shadow: 0 0 18px rgba(255,255,255,.18);
+    }
+    .lab{
+      margin-top: 7px;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.72);
+    }
+
+    /* CTAs */
+    .cta{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 70px;
+      align-items: stretch;
+    }
+    .btn{
+      display:block;
+      text-align:center;
+      text-decoration:none;
+      color: rgba(255,255,255,.92);
+      font-weight: 600;
+      letter-spacing: .02em;
+      padding: 14px 14px;
+      border-radius: 999px;
+      background: rgba(10, 12, 20, .22);
+      border: 1px solid rgba(255,255,255,.20);
+      box-shadow: 0 14px 24px rgba(0,0,0,.20);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow:hidden;
+    }
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:999px;
+      padding:2px;
+      background: linear-gradient(135deg, var(--glow-a), var(--glow-b), var(--glow-c));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: .45;
+      pointer-events:none;
+    }
+    .btn:active{ transform: scale(.99); }
+
+    .footer{
+      text-align:center;
+      margin-top: 18px;
+      font-family: "FonteESPM", serif;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+      font-size: 12px;
+      color: rgba(255,255,255,.70);
+      text-shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+
+    /* Responsivo: em telas muito estreitas, reduz um pouco o gap */
+    @media (max-width: 360px){
+      .timer{ gap: 8px; }
+      .tile{ padding: 12px 8px 10px; }
+    }
+    .logo-top{
+  position: relative;
+  z-index: 20;           /* acima de tudo */
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.logo-top img{
+  width: min(70vw, 320px); /* controla tamanho */
+  height: auto;
+}
+.title-image{
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5vh;
+}
+
+.title-image img{
+  width: min(88vw, 560px); /* controla tamanho */
+  height: auto;
+}
+  </style>
+</head>
+
+<body>
+  <!-- ✅ BG original (sem alterações) -->
+  <div class="art-bg">
+    <img class="bg-img" src="bg.png" alt="" />
+  </div>
+
+  <!-- Conteúdo -->
+  <main class="content" aria-label="Contagem regressiva da formatura">
+<div class="logo-top">
+  <img src="logo-espm.png" alt="ESPM Infinito">
+</div>
+    <section class="hero">
+      <h1 class="t1 glow-text-premium">Você está pronto(a)</h1>
+      <div class="title-image">
+  <img src="texto.png" alt="Última Dança" />
+</div>
+    </section>
+
+    <section class="faltam-wrap" aria-label="Cronômetro">
+      <div class="faltam glow-text">Faltam…</div>
+
+      <div class="timer">
+        <div class="tile"><div class="num" id="d">—</div><div class="lab">Dias</div></div>
+        <div class="tile"><div class="num" id="h">—</div><div class="lab">Horas</div></div>
+        <div class="tile"><div class="num" id="m">—</div><div class="lab">Min</div></div>
+        <div class="tile"><div class="num" id="s">—</div><div class="lab">Seg</div></div>
+      </div>
+
+      <div class="cta">
+        <a class="btn" id="btnGoogle" target="_blank" rel="noopener">Adicionar no Google Agenda</a>
+        <a class="btn" id="btnIcs" download="Formatura-ESPM-Infinito.ics">Adicionar no Calendário</a>
+      </div>
+
+      <div class="footer glow-text">Formatura ESPM Infinito • Expo SP</div>
+    </section>
+  </main>
+
+  <script>
+    // ===== CONFIG DO EVENTO =====
+    const EVENT_TITLE = "Formatura ESPM Infinito";
+    const EVENT_DESCRIPTION = "Você está pronto(a) para sua última dança? 💃🕺";
+    const EVENT_LOCATION = "Expo SP";
+
+    // 19/12/2026 22:00 (Brasília -03:00)
+    const targetDate = new Date("2026-12-19T22:00:00-03:00");
+
+    // Duração para calendário (min)
+    const DURATION_MIN = 360;
+
+    // ===== CRONÔMETRO =====
+    const target = targetDate.getTime();
+    const el = {
+      d: document.getElementById("d"),
+      h: document.getElementById("h"),
+      m: document.getElementById("m"),
+      s: document.getElementById("s"),
+    };
+
+    function pad2(n){ return String(n).padStart(2, "0"); }
+
+    function tick(){
+      const now = Date.now();
+      const diff = Math.max(0, target - now);
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      el.d.textContent = days;
+      el.h.textContent = pad2(hours);
+      el.m.textContent = pad2(minutes);
+      el.s.textContent = pad2(seconds);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    // ===== CALENDÁRIO (Google + ICS) =====
+    function toUTCStamp(date){
+      const y = date.getUTCFullYear();
+      const mo = String(date.getUTCMonth()+1).padStart(2,"0");
+      const d = String(date.getUTCDate()).padStart(2,"0");
+      const h = String(date.getUTCHours()).padStart(2,"0");
+      const mi = String(date.getUTCMinutes()).padStart(2,"0");
+      const s = String(date.getUTCSeconds()).padStart(2,"0");
+      return `${y}${mo}${d}T${h}${mi}${s}Z`;
+    }
+
+    function escapeICS(text){
+      return String(text)
+        .replace(/\\/g, "\\\\")
+        .replace(/\n/g, "\\n")
+        .replace(/,/g, "\\,")
+        .replace(/;/g, "\\;");
+    }
+
+    const start = new Date(targetDate);
+    const end = new Date(targetDate.getTime() + DURATION_MIN*60*1000);
+
+    // Google Calendar
+    const googleUrl = new URL("https://calendar.google.com/calendar/render");
+    googleUrl.searchParams.set("action", "TEMPLATE");
+    googleUrl.searchParams.set("text", EVENT_TITLE);
+    googleUrl.searchParams.set("details", EVENT_DESCRIPTION);
+    googleUrl.searchParams.set("location", EVENT_LOCATION);
+    googleUrl.searchParams.set("dates", `${toUTCStamp(start)}/${toUTCStamp(end)}`);
+    document.getElementById("btnGoogle").href = googleUrl.toString();
+
+    // ICS
+    const dtStart = toUTCStamp(start);
+    const dtEnd = toUTCStamp(end);
+    const dtStamp = toUTCStamp(new Date());
+    const uid = `formatura-${dtStart}@espm-infinito`;
+
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//ESPM Infinito//Ultima Danca//PT-BR",
+      "CALSCALE:GREGORIAN",
+      "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      `UID:${uid}`,
+      `DTSTAMP:${dtStamp}`,
+      `DTSTART:${dtStart}`,
+      `DTEND:${dtEnd}`,
+      `SUMMARY:${escapeICS(EVENT_TITLE)}`,
+      `DESCRIPTION:${escapeICS(EVENT_DESCRIPTION)}`,
+      `LOCATION:${escapeICS(EVENT_LOCATION)}`,
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\r\n");
+
+    const icsBlob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const icsUrl = URL.createObjectURL(icsBlob);
+    document.getElementById("btnIcs").href = icsUrl;
+  </script>
+</body>
+</html>
