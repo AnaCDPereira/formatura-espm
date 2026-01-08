@@ -59,13 +59,27 @@
     0 0 52px rgba(90,210,255,.35);
     }
 
-    *{ box-sizing: border-box; }
-    body{
-      margin:0;
-      min-height:100svh;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:#000;
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+
+  /* BG que rola junto com a página */
+  background-image: url("bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: scroll;
+}
       overflow-x:hidden;
     }
 
@@ -282,10 +296,6 @@
 </head>
 
 <body>
-  <!-- ✅ BG original (sem alterações) -->
-  <div class="art-bg">
-    <img class="bg-img" src="bg.png" alt="" />
-  </div>
 
   <!-- Conteúdo -->
   <main class="content" aria-label="Contagem regressiva da formatura">
@@ -421,3 +431,4 @@
   </script>
 </body>
 </html>
+
