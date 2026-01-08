@@ -104,7 +104,7 @@ body{
   /* espaçamento harmônico (sem margens gigantes) */
   gap: 14px;
 
-  padding: 18px 18px calc(18px + env(safe-area-inset-bottom));
+  padding: 26px 18px calc(18px + env(safe-area-inset-bottom));
   box-sizing: border-box;
 }
     
@@ -300,8 +300,8 @@ body{
   height: auto;
 }
     .footer {
-  margin-top: 8px;
-  padding-bottom: 0px;
+  margin-top: 0px;
+  padding-bottom: 14px 0 10px;
   display: flex;
   justify-content: center;
 }
@@ -313,7 +313,7 @@ body{
 }
 
 .footer-logos img {
-  height: 50px; /* controla o tamanho */
+  height: 44px; /* controla o tamanho */
   width: auto;
   opacity: 0.9;
 }
@@ -333,6 +333,55 @@ body{
     rgba(240,106,79,.25),
     rgba(240,106,79,0)
   );
+      body::after{
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 140px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 60, 93, 0),
+    rgba(11, 60, 93, 0.85),
+    rgba(11, 60, 93, 1)
+  );
+
+  pointer-events: none;
+  z-index: 5;
+      @media (min-width: 900px){
+  .content{
+    width: min(92vw, 860px); /* 👈 mais largo no PC */
+    padding: 40px 26px 28px;
+    gap: 22px;
+  }
+
+  .logo-top img{
+    width: 220px;
+  }
+
+  .hero .t1{
+    font-size: 34px;
+  }
+
+  .title-image img{
+    width: min(800px, 85vw);
+  }
+
+  .timer{
+    max-width: 520px;
+    transform: scale(1.15);
+  }
+
+  .btn{
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .footer-logos img{
+    height: 52px;
+  }
 }
   </style>
 </head>
@@ -478,6 +527,7 @@ body{
   </script>
 </body>
 </html>
+
 
 
 
